@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using HomeWork.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using HomeWork.Models;
 
 namespace HomeWork.Controllers
 {
@@ -15,9 +11,16 @@ namespace HomeWork.Controllers
         private 客戶資料Entities db = new 客戶資料Entities();
 
         // GET: Customer
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
-            return View(db.客戶資料.ToList());
+            var query = db.客戶資料.AsQueryable();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(m => m.客戶名稱.Contains(keyword));
+
+            }
+            return View(query.ToList());
         }
 
         // GET: Customer/Details/5
