@@ -191,6 +191,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewTable.cs">
+      <DependentUpon>CustomerData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>CustomerData.tt</DependentUpon>
     </Compile>
@@ -272,11 +275,11 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\CostomerContact\Create.cshtml" />
-    <Content Include="Views\CostomerContact\Delete.cshtml" />
-    <Content Include="Views\CostomerContact\Details.cshtml" />
-    <Content Include="Views\CostomerContact\Edit.cshtml" />
-    <Content Include="Views\CostomerContact\Index.cshtml" />
+    <Content Include="Views\CustomerContact\Create.cshtml" />
+    <Content Include="Views\CustomerContact\Delete.cshtml" />
+    <Content Include="Views\CustomerContact\Details.cshtml" />
+    <Content Include="Views\CustomerContact\Edit.cshtml" />
+    <Content Include="Views\CustomerContact\Index.cshtml" />
     <Content Include="Views\CustomerBank\Create.cshtml" />
     <Content Include="Views\CustomerBank\Delete.cshtml" />
     <Content Include="Views\CustomerBank\Details.cshtml" />

@@ -22,24 +22,31 @@ namespace HomeWork.Models
             this.客戶聯絡人 = new HashSet<客戶聯絡人>();
         }
     
-        [Required]
         public int Id { get; set; }
-        [Required(ErrorMessage ="請輸入客戶名稱")]
+
+        [Required(ErrorMessage = "請輸入客戶名稱")]
         public string 客戶名稱 { get; set; }
+
         [Required(ErrorMessage = "請輸入統一編號")]
         public string 統一編號 { get; set; }
+
         [Required(ErrorMessage = "請輸入電話")]
-        [Phone]
+        [RegularExpression(@"^\d{6,8}$", ErrorMessage = "請輸入正確的電話號碼")]
         public string 電話 { get; set; }
+
         [Required(ErrorMessage = "請輸入傳真")]
+        [Phone]
         public string 傳真 { get; set; }
+
         [Required(ErrorMessage = "請輸入地址")]
         public string 地址 { get; set; }
+
         [Required(ErrorMessage = "請輸入Email")]
         [EmailAddress]
-        [Display(Name = "電子郵件")]
         public string Email { get; set; }
 
+        public Nullable<bool> IsDelete { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
