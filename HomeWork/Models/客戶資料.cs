@@ -43,6 +43,7 @@ namespace HomeWork.Models
 
         [Required(ErrorMessage = "請輸入Email")]
         [EmailAddress]
+        [Display(Name = "電子郵件")]
         public string Email { get; set; }
 
         public Nullable<bool> IsDelete { get; set; }

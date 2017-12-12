@@ -15,8 +15,8 @@ namespace HomeWork.Models
     public partial class NewTable
     {
         public int Id { get; set; }
-        public string CustomerString { get; set; }
-        public Nullable<int> ContactCount { get; set; }
-        public Nullable<int> BankCount { get; set; }
+        public string 客戶名稱 { get; set; }
+        public Nullable<int> 聯絡人數量 { get; set; }
+        public Nullable<int> 銀行帳戶數量 { get; set; }
     }
 }

@@ -10,9 +10,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="CustomerString" Type="nvarchar" MaxLength="50" />
-          <Property Name="ContactCount" Type="int" />
-          <Property Name="BankCount" Type="int" />
+          <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="聯絡人數量" Type="int" />
+          <Property Name="銀行帳戶數量" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -203,9 +203,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="CustomerString" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContactCount" Type="Int32" />
-          <Property Name="BankCount" Type="Int32" />
+          <Property Name="客戶名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="聯絡人數量" Type="Int32" />
+          <Property Name="銀行帳戶數量" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -269,9 +269,9 @@
           <EntitySetMapping Name="NewTable">
             <EntityTypeMapping TypeName="CustomerData.NewTable">
               <MappingFragment StoreEntitySet="NewTable">
-                <ScalarProperty Name="BankCount" ColumnName="BankCount" />
-                <ScalarProperty Name="ContactCount" ColumnName="ContactCount" />
-                <ScalarProperty Name="CustomerString" ColumnName="CustomerString" />
+                <ScalarProperty Name="銀行帳戶數量" ColumnName="銀行帳戶數量" />
+                <ScalarProperty Name="聯絡人數量" ColumnName="聯絡人數量" />
+                <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

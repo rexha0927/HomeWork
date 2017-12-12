@@ -15,7 +15,6 @@ namespace HomeWork.Models
 
     public partial class 客戶聯絡人
     {
-        
         public int Id { get; set; }
 
         public int 客戶Id { get; set; }
