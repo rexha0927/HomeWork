@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HomeWork.Models.NewTable>
+
+@{
+    ViewBag.Title = "客戶資料";
+}
+
+<h2>客戶資料</h2>
+<div class="form-group">
+    <div class="form-inline">
+        @Html.ActionLink("客戶資料管理", "Index", "Customer") |
+        @Html.ActionLink("客戶聯絡人管理", "Index", "CustomerContact") |
+        @Html.ActionLink("客戶銀行帳戶管理", "Index", "CustomerBank")
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankCount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankCount)
+            </td>
+        </tr>
+    }
+</table>
+

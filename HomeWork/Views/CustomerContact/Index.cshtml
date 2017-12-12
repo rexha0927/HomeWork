@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<HomeWork.Models.客戶聯絡人>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "客戶聯絡人管理";
 }
 
-<h2>Index</h2>
+<h2>客戶聯絡人管理</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using (Html.BeginForm())
+    {
+        @Html.Label("keyword", "關鍵字:")
+        @Html.TextBox("keyword")
+        <input type="submit" value="搜尋" />
+    }
 </p>
 <table class="table">
     <tr>
