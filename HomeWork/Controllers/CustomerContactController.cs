@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HomeWork.Models;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using HomeWork.Models;
 
 namespace HomeWork.Controllers
 {
     public class CustomerContactController : Controller
     {
+        客戶資料Entities db = new 客戶資料Entities();
         客戶聯絡人Repository repo = RepositoryHelper.Get客戶聯絡人Repository();
-        客戶資料Repository repo2 = RepositoryHelper.Get客戶資料Repository();
 
         // GET: CostomerContact
         public ActionResult Index(string keyword)
@@ -46,9 +42,7 @@ namespace HomeWork.Controllers
         // GET: CostomerContact/Create
         public ActionResult Create()
         {
-            //ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
-            客戶聯絡人 客戶聯絡人 = new 客戶聯絡人();
-            InitDropDownList(客戶聯絡人);
+            InitDropDownList();
 
             return View();
         }
@@ -66,7 +60,7 @@ namespace HomeWork.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            InitDropDownList(客戶聯絡人);
+            InitDropDownList();
 
             return View(客戶聯絡人);
         }
@@ -83,7 +77,8 @@ namespace HomeWork.Controllers
             {
                 return HttpNotFound();
             }
-            InitDropDownList(客戶聯絡人);
+            InitDropDownList();
+
             return View(客戶聯絡人);
         }
 
@@ -100,7 +95,7 @@ namespace HomeWork.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            InitDropDownList(客戶聯絡人);
+            InitDropDownList();
 
             return View(客戶聯絡人);
         }
@@ -132,13 +127,9 @@ namespace HomeWork.Controllers
             return RedirectToAction("Index");
         }
 
-        private void InitDropDownList(客戶聯絡人 客戶聯絡人)
+        private void InitDropDownList()
         {
-            List<SelectListItem> data = new List<SelectListItem>();
-            foreach(客戶資料 m in repo2.All())
-            {
-                data.Add(new SelectListItem { Text = m.客戶名稱, Value = m.Id.ToString() });
-            }
+            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
         }
     }
 }
