@@ -37,7 +37,7 @@ namespace HomeWork.Models
         [Required(ErrorMessage = "請輸入電話")]
         public string 電話 { get; set; }
 
-        public Nullable<bool> IsDelete { get; set; }
+        public bool? IsDelete { get; set; }
     
         public virtual 客戶資料 客戶資料 { get; set; }
     }

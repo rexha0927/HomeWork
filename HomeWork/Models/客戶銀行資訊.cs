@@ -33,7 +33,7 @@ namespace HomeWork.Models
 
         [Required(ErrorMessage = "請輸入帳戶號碼")]
         public string 帳戶號碼 { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public bool? IsDelete { get; set; }
     
         public virtual 客戶資料 客戶資料 { get; set; }
     }

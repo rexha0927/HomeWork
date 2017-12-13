@@ -46,7 +46,7 @@ namespace HomeWork.Models
         [Display(Name = "電子郵件")]
         public string Email { get; set; }
 
-        public Nullable<bool> IsDelete { get; set; }
+        public bool? IsDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
