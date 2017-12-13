@@ -12,12 +12,13 @@ namespace HomeWork.Controllers
 {
     public class CustomerContactController : Controller
     {
-        private 客戶資料Entities db = new 客戶資料Entities();
+        客戶聯絡人Repository repo = RepositoryHelper.Get客戶聯絡人Repository();
+        客戶資料Repository repo2 = RepositoryHelper.Get客戶資料Repository();
 
         // GET: CostomerContact
         public ActionResult Index(string keyword)
         {
-            var query = db.客戶聯絡人.Include(m => m.客戶資料);
+            var query = repo.All();
 
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -34,7 +35,7 @@ namespace HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
+            客戶聯絡人 客戶聯絡人 = repo.Find(id);
             if (客戶聯絡人 == null)
             {
                 return HttpNotFound();
@@ -45,7 +46,10 @@ namespace HomeWork.Controllers
         // GET: CostomerContact/Create
         public ActionResult Create()
         {
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
+            //ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
+            客戶聯絡人 客戶聯絡人 = new 客戶聯絡人();
+            InitDropDownList(客戶聯絡人);
+
             return View();
         }
 
@@ -58,12 +62,12 @@ namespace HomeWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.客戶聯絡人.Add(客戶聯絡人);
-                db.SaveChanges();
+                repo.Add(客戶聯絡人);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
+            InitDropDownList(客戶聯絡人);
 
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
@@ -74,12 +78,12 @@ namespace HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
+            客戶聯絡人 客戶聯絡人 = repo.Find(id);
             if (客戶聯絡人 == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+            InitDropDownList(客戶聯絡人);
             return View(客戶聯絡人);
         }
 
@@ -92,11 +96,12 @@ namespace HomeWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(客戶聯絡人).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(客戶聯絡人);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+            InitDropDownList(客戶聯絡人);
+
             return View(客戶聯絡人);
         }
 
@@ -107,7 +112,7 @@ namespace HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
+            客戶聯絡人 客戶聯絡人 = repo.Find(id);
             if (客戶聯絡人 == null)
             {
                 return HttpNotFound();
@@ -120,19 +125,20 @@ namespace HomeWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
-            db.客戶聯絡人.Remove(客戶聯絡人);
-            db.SaveChanges();
+            客戶聯絡人 客戶聯絡人 =repo.Find(id);
+            repo.Delete(客戶聯絡人);
+            repo.UnitOfWork.Commit();
+
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        private void InitDropDownList(客戶聯絡人 客戶聯絡人)
         {
-            if (disposing)
+            List<SelectListItem> data = new List<SelectListItem>();
+            foreach(客戶資料 m in repo2.All())
             {
-                db.Dispose();
+                data.Add(new SelectListItem { Text = m.客戶名稱, Value = m.Id.ToString() });
             }
-            base.Dispose(disposing);
         }
     }
 }
