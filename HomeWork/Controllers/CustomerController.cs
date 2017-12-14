@@ -1,4 +1,5 @@
 ﻿using HomeWork.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -19,6 +20,7 @@ namespace HomeWork.Controllers
                 query = query.Where(m => m.客戶名稱.Contains(keyword));
 
             }
+            PrepareViewBag();
             return View(query.ToList());
         }
 
@@ -40,6 +42,7 @@ namespace HomeWork.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
+            PrepareViewBag();
             return View();
         }
 
@@ -56,6 +59,9 @@ namespace HomeWork.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
+            PrepareViewBag();
+            //客戶資料.客戶分類清單= Get客戶分類清單();
+            //ViewData.Model = 客戶資料;
 
             return View(客戶資料);
         }
@@ -72,6 +78,7 @@ namespace HomeWork.Controllers
             {
                 return HttpNotFound();
             }
+            PrepareViewBag();
             return View(客戶資料);
         }
 
@@ -88,6 +95,7 @@ namespace HomeWork.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
+
             return View(客戶資料);
         }
 
@@ -118,6 +126,18 @@ namespace HomeWork.Controllers
             repo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");
+        }
+
+        public void PrepareViewBag()
+        {
+            //鈦金會員/白金會員/金牌會員/一般會員
+            ViewBag.CustomerType = new List<SelectListItem>()
+                        {
+                            new SelectListItem { Value = "T", Text = "鈦金會員" },
+                            new SelectListItem { Value = "P", Text = "白金會員" },
+                            new SelectListItem { Value = "G", Text = "金牌會員" },
+                            new SelectListItem { Value = "S", Text = "一般會員" }
+                        };
         }
     }
 }

@@ -9,15 +9,28 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p>
-    @using (Html.BeginForm())
-    {
-        @Html.Label("keyword","關鍵字:")
-        @Html.TextBox("keyword")
-        <input type="submit" value="搜尋"/>
-    }
-</p>
-<table class="table">
+@using (Html.BeginForm("Index", "Customer", FormMethod.Post, new { id = "queryForm", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <div class="col-sm-10 form-inline">
+            <div class="form-group col-sm-5">
+                <label class="col-sm-3 control-label">@Html.Label("keyword", "關鍵字:")</label>
+                <div class="col-sm-9">
+                    @Html.TextBox("keyword", null, new { @class = "form-control", @placeholder = "keyword" })
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="查詢條件_分類" class="col-sm-3 control-label">客戶分類:</label>
+                @Html.DropDownList("type", (IEnumerable<SelectListItem>)ViewBag.CustomerType, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button id="btnQuery" type="submit" class="btn btn-primary">搜尋</button>
+        </div>
+    </div>
+}
+<br />
+<table id="tblResult" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.客戶名稱)
@@ -36,6 +49,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.客戶分類)
         </th>
         <th></th>
     </tr>
@@ -62,6 +78,9 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.客戶分類)
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you SURE?');" })
@@ -71,4 +90,22 @@
 
 </table>
 
-<table></table>
+@section scripts{
+    <script>
+        $(function () {
+            var reloadTable = function () {
+                var api = tblResult.api()
+
+                api.ajax.url('@Url.Action("Index")?' + $('#queryForm').serialize());
+                api.ajax.reload();
+            }
+
+            $("#btnQuery").click(function () {
+                $("#queryForm").submit();
+
+            });
+            $("#type").change(reloadTable);
+        });
+    </script>
+}
+

@@ -127,6 +127,11 @@ namespace HomeWork.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CheckEmailRepeat([Bind(Include = "Id,客戶Id,職稱,姓名,Email,手機,電話")] 客戶聯絡人 客戶聯絡人)
+        {
+            return Json(repo.EmailNotRepeat(客戶聯絡人), JsonRequestBehavior.AllowGet);
+        }
+
         private void InitDropDownList()
         {
             ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");

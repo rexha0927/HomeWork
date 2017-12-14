@@ -12,6 +12,7 @@ namespace HomeWork.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class 客戶資料
     {
@@ -47,7 +48,12 @@ namespace HomeWork.Models
         public string Email { get; set; }
 
         public bool? IsDelete { get; set; }
-    
+
+        [Display(Name = "客戶分類")]
+        public string 客戶分類 { get; set; }
+
+        public List<SelectListItem> 客戶分類清單 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
