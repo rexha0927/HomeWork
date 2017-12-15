@@ -12,6 +12,7 @@
         <AssociationConnector Association="CustomerData.FK_客戶銀行資訊_客戶資料" ManuallyRouted="false" />
         <AssociationConnector Association="CustomerData.FK_客戶聯絡人_客戶資料" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CustomerData.NewTable" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="CustomerData.VW客戶關聯資料統計表" Width="1.5" PointX="7.625" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

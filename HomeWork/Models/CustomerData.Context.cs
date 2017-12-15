@@ -30,5 +30,6 @@ namespace HomeWork.Models
         public virtual DbSet<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual DbSet<客戶聯絡人> 客戶聯絡人 { get; set; }
         public virtual DbSet<NewTable> NewTable { get; set; }
+        public virtual DbSet<VW客戶關聯資料統計表> VW客戶關聯資料統計表 { get; set; }
     }
 }
