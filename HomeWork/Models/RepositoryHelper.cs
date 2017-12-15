@@ -35,6 +35,20 @@ namespace HomeWork.Models
 			return repository;
 		}		
 
+		public static VW客戶關聯資料統計表Repository GetVW客戶關聯資料統計表Repository()
+		{
+			var repository = new VW客戶關聯資料統計表Repository();
+			repository.UnitOfWork = GetUnitOfWork();
+			return repository;
+		}
+
+		public static VW客戶關聯資料統計表Repository GetVW客戶關聯資料統計表Repository(IUnitOfWork unitOfWork)
+		{
+			var repository = new VW客戶關聯資料統計表Repository();
+			repository.UnitOfWork = unitOfWork;
+			return repository;
+		}		
+
 		public static 客戶資料Repository Get客戶資料Repository()
 		{
 			var repository = new 客戶資料Repository();

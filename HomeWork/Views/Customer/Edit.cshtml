@@ -75,7 +75,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input id="save" type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -87,4 +87,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#save").click(function () {
+            //var type = $("#type").val();
+
+            $.post("@Url.Action("Edit", "Customer")");
+        });
+    </script>
 }

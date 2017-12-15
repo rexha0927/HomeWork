@@ -88,11 +88,10 @@
     @*@Scripts.Render("~/bundles/jqueryval")*@
     <script>
         $("#create").click(function () {
-            var type = $("#type").val();
+            //var type = $("#type").val();
 
             $.post("@Url.Action("Create", "Customer")");
-        }
-            )
+        });
     </script>
 
 }

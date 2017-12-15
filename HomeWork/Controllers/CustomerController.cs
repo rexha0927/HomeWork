@@ -22,7 +22,6 @@ namespace HomeWork.Controllers
                 query = query.Where(m => m.客戶名稱.Contains(keyword));
 
             }
-
             PrepareViewBag();
 
             return View(query.ToList());
@@ -94,7 +93,7 @@ namespace HomeWork.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
+        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,客戶分類")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
@@ -145,6 +144,17 @@ namespace HomeWork.Controllers
                             new SelectListItem { Value = "G", Text = "金牌會員" },
                             new SelectListItem { Value = "S", Text = "一般會員" }
                         };
+        }
+
+        private List<SelectListItem> Get客戶分類清單()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Text = "S級", Value = "S" },
+                new SelectListItem { Text = "A級", Value = "A" },
+                new SelectListItem { Text = "B級", Value = "B" },
+                new SelectListItem { Text = "C級", Value = "C" }
+            };
         }
     }
 }

@@ -235,6 +235,12 @@
     <Compile Include="Models\VW客戶關聯資料統計表.cs">
       <DependentUpon>CustomerData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VW客戶關聯資料統計表.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW客戶關聯資料統計表Repository.cs">
+      <DependentUpon>IRepository.EF6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerData.tt</DependentUpon>
     </Compile>
