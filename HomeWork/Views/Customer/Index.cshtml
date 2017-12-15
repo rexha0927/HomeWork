@@ -7,7 +7,8 @@
 <h2>客戶資料管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Back Main", "Index", "MainCustomer")
 </p>
 @using (Html.BeginForm("Index", "Customer", FormMethod.Post, new { id = "queryForm", @class = "form-horizontal" }))
 {

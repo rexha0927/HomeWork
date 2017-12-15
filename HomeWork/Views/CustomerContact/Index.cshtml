@@ -7,17 +7,26 @@
 <h2>客戶聯絡人管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Back Main", "Index", "MainCustomer")
 </p>
-<p>
-    @using (Html.BeginForm())
-    {
-        @Html.Label("keyword", "關鍵字:")
-        @Html.TextBox("keyword")
-        <input type="submit" value="搜尋" />
-    }
-</p>
-<table class="table">
+@using (Html.BeginForm("Index", "CustomerContact", FormMethod.Post, new { id = "queryForm", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <div class="col-sm-10 form-inline">
+            <div class="form-group col-sm-5">
+                <label class="col-sm-3 control-label">@Html.Label("keyword", "關鍵字:")</label>
+                <div class="col-sm-9">
+                    @Html.TextBox("keyword", null, new { @class = "form-control", @placeholder = "keyword 職稱" })
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button id="query" type="submit" class="btn btn-primary">搜尋</button>
+        </div>
+    </div>
+}
+<table id="contactTable" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.客戶資料.客戶名稱)
@@ -71,3 +80,20 @@
     }
 
 </table>
+@section scripts{
+    <script>
+        $(function () {
+            var contactTable = function () {
+                var api = contactTable.api()
+
+                api.ajax.url('@Url.Action("Index")?' + $('#queryForm').serialize());
+                api.ajax.reload();
+            }
+
+            $("#query").click(function () {
+                $("#queryForm").submit();
+
+            });
+        });
+    </script>
+}

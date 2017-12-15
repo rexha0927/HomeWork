@@ -10,6 +10,18 @@ namespace HomeWork.Models
         {
             return All().FirstOrDefault(a => a.Id == id);
         }
+
+        public 客戶資料 Create(客戶資料 model)
+        {
+            if (model==null)
+            {
+                model = new 客戶資料();
+            }
+
+            this.Add(model);
+
+            return model;
+        }
     }
 
 	public  interface I客戶資料Repository : IRepository<客戶資料>

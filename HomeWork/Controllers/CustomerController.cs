@@ -9,6 +9,7 @@ namespace HomeWork.Controllers
     public class CustomerController : Controller
     {
         客戶資料Repository repo = RepositoryHelper.Get客戶資料Repository();
+        客戶資料Entities db = new 客戶資料Entities();
 
         // GET: Customer
         public ActionResult Index(string keyword)
@@ -51,12 +52,15 @@ namespace HomeWork.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
+        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,客戶分類")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
-                repo.Add(客戶資料);
-                repo.UnitOfWork.Commit();
+                db.客戶資料.Add(客戶資料);
+                db.SaveChanges();
+                //repo.Add(客戶資料)
+                //repo.Update(客戶資料);
+                //repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             PrepareViewBag();

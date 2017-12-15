@@ -7,9 +7,9 @@
 <h2>客戶資料</h2>
 <div class="form-group">
     <div class="form-inline">
-        @Html.ActionLink("客戶資料管理", "Index", "Customer") |
-        @Html.ActionLink("客戶聯絡人管理", "Index", "CustomerContact") |
-        @Html.ActionLink("客戶銀行帳戶管理", "Index", "CustomerBank")
+        <button id="customer" type="button" class="btn btn-info">客戶資料管理</button>
+        <button id="contact" type="button" class="btn btn-info">客戶聯絡人管理</button>
+        <button id="bank" type="button" class="btn btn-info">客戶銀行帳戶管理</button>
     </div>
 </div>
 
@@ -42,4 +42,20 @@
         </tr>
     }
 </table>
+
+@section scripts{
+    <script>
+        $("#customer").click(function () {
+            location.href = "@Url.Action("Index", "Customer")";
+        })
+
+        $("#contact").click(function () {
+            location.href = "@Url.Action("Index", "CustomerContact")";
+        })
+
+        $("#bank").click(function () {
+            location.href = "@Url.Action("Index", "CustomerBank")";
+        })
+    </script>
+    }
 
