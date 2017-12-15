@@ -8,9 +8,10 @@
         <EntityType Name="NewTable">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="客戶名稱" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="聯絡人數量" Type="int" />
           <Property Name="銀行帳戶數量" Type="int" />
         </EntityType>
@@ -197,13 +198,14 @@
             <End Role="客戶聯絡人" EntitySet="客戶聯絡人" />
           </AssociationSet>
           <EntitySet Name="NewTable" EntityType="CustomerData.NewTable" />
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="NewTable">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="客戶名稱" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="客戶名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="客戶名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="聯絡人數量" Type="Int32" />
           <Property Name="銀行帳戶數量" Type="Int32" />
         </EntityType>
@@ -267,16 +269,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NewTable">
-            <EntityTypeMapping TypeName="CustomerData.NewTable">
+            <EntityTypeMapping TypeName="IsTypeOf(CustomerData.NewTable)">
               <MappingFragment StoreEntitySet="NewTable">
-                <ScalarProperty Name="銀行帳戶數量" ColumnName="銀行帳戶數量" />
-                <ScalarProperty Name="聯絡人數量" ColumnName="聯絡人數量" />
-                <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
+                <ScalarProperty Name="聯絡人數量" ColumnName="聯絡人數量" />
+                <ScalarProperty Name="銀行帳戶數量" ColumnName="銀行帳戶數量" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

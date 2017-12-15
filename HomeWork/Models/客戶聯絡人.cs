@@ -11,8 +11,7 @@ namespace HomeWork.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
@@ -22,8 +21,8 @@ namespace HomeWork.Models
         public string Email { get; set; }
         public string 手機 { get; set; }
         public string 電話 { get; set; }
-        public bool? IsDelete { get; set; }
-
+        public Nullable<bool> IsDelete { get; set; }
+    
         public virtual 客戶資料 客戶資料 { get; set; }
     }
 }
