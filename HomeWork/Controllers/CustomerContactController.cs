@@ -14,13 +14,8 @@ namespace HomeWork.Controllers
         // GET: CostomerContact
         public ActionResult Index(string keyword)
         {
-            var query = repo.All();
+            var query = repo.QueryKeyword(keyword);
 
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                query = query.Where(m => m.姓名.Contains(keyword) || m.職稱.Contains(keyword));
-
-            }
             return View(query.ToList());
         }
 
@@ -121,7 +116,9 @@ namespace HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶聯絡人 客戶聯絡人 =repo.Find(id);
-            repo.Delete(客戶聯絡人);
+
+            客戶聯絡人.IsDelete = true;
+            //repo.Delete(客戶聯絡人);
             repo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");
@@ -129,7 +126,7 @@ namespace HomeWork.Controllers
 
         public ActionResult CheckEmailRepeat([Bind(Include = "Id,客戶Id,職稱,姓名,Email,手機,電話")] 客戶聯絡人 客戶聯絡人)
         {
-            return Json(repo.EmailNotRepeat(客戶聯絡人), JsonRequestBehavior.AllowGet);
+            return Json(!repo.EmailNotRepeat(客戶聯絡人), JsonRequestBehavior.AllowGet);
         }
 
         private void InitDropDownList()

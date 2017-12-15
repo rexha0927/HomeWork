@@ -40,6 +40,7 @@ namespace HomeWork.Models
         
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         [Required(ErrorMessage = "請輸入Email")]
+        [EmailAddress]
         [Display(Name = "電子郵件")]
         public string Email { get; set; }
 

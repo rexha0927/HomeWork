@@ -15,13 +15,16 @@ namespace HomeWork.Controllers
         public ActionResult Index(string keyword)
         {
             var query = repo.All();
+            //var query = repo.QueryKeyword(keyword,type); 
 
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(m => m.客戶名稱.Contains(keyword));
 
             }
+
             PrepareViewBag();
+
             return View(query.ToList());
         }
 
@@ -126,7 +129,7 @@ namespace HomeWork.Controllers
             客戶資料 客戶資料 = repo.Find(id);
 
             客戶資料.IsDelete = true;
-            repo.Delete(客戶資料);
+            //repo.Delete(客戶資料);
             repo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");

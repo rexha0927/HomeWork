@@ -15,13 +15,8 @@ namespace HomeWork.Controllers
         // GET: CustomerBank
         public ActionResult Index(string keyword)
         {
-            var query = repo.All();
+            var query = repo.QueryKeyword(keyword);
 
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                query = query.Where(m => m.帳戶名稱.Contains(keyword));
-
-            }
             return View(query.ToList());
         }
 
@@ -61,7 +56,6 @@ namespace HomeWork.Controllers
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-
             InitDropDownList();
 
             return View(客戶銀行資訊);
@@ -123,7 +117,9 @@ namespace HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = repo.Find(id);
-            repo.Delete(客戶銀行資訊);
+
+            客戶銀行資訊.IsDelete = true;
+            //repo.Delete(客戶銀行資訊);
             repo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");

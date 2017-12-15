@@ -1,11 +1,19 @@
-using System;
 using System.Linq;
-using System.Collections.Generic;
-	
+
 namespace HomeWork.Models
-{   
-	public  class 客戶資料Repository : EFRepository<客戶資料>, I客戶資料Repository
+{
+    public  class 客戶資料Repository : EFRepository<客戶資料>, I客戶資料Repository
 	{
+        public override IQueryable<客戶資料> All()
+        {
+            return Where(m => m.IsDelete != true);
+        }
+
+        public IQueryable<客戶資料> QueryKeyword(string keyword, string type)
+        {
+            return All().Where(m => m.客戶名稱.Contains(keyword) || m.客戶分類 == type);
+        }
+
         public 客戶資料 Find(int? id)
         {
             return All().FirstOrDefault(a => a.Id == id);
